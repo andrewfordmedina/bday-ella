@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ella's 26th Birthday!</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      </head>
+<body>
+    <header id="header">
+        <!--  Brand Logo  -->
+        
+        <a class="nav-brand" href="" target="_blank">
+          <img src="bee_day.png" style="width:250px;" alt="Ella's 26th Birthday">
+        </a>
+      
+        <!--  Toggle Menu for Mobile  -->
+      
+        <input type="checkbox" id="toggle-menu" role="button">
+        <label for="toggle-menu" class="toggle-menu">Menu</label>
+      
+        <!--  Menus  -->
+      </header>
+      
+      <!-- Hero Section -->
+      <div class="her">
+         <div class="hero-text">
+             <br><br><br>
+          <h1>Ella's 26th Birthday! </h1>
+           <h4>An encrpyted message has been prepared by your ❤️</h4>
+        <p id="message" style="display:inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 50ch;"></p>
+
+        <p id="message2">
+
+        </p>
+        <div id="passSection">
+            <p>
+                Type password to encrypt message
+                <input type="text" id="password" >
+            </p>
+            <h4>
+                <br>
+                Hints (password is in snake_case and lower case): <br><br>
+                Alec's only love lastname + Percentage of Alec's love for Ella ❤️ + Her new found love <br> + The placed where she fell in love with me (acronym of place)
+                <br>
+                <br>
+                Example: taulava_75_cooking_lrt
+            </h4>
+            <p>
+                <input type="button" value="Submit password" onclick="showMessage()">
+            </p>
+            </div>
+    
+        </div>
+        <div class="hero-img" style="padding-left: 0px;">
+            <img src="bee.png" alt="Pixel Skincare" style="width: 300px;">
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero">
+        <div class="hero-img">
+          <img src="flowers.png" alt="Pixel Skincare">
+        </div>
+      
+        <div class="hero-text">
+          <h1>Ella's bouquet</h1>
+          <p>Parcel has departed from shenzen sorting center.</p>
+        </div>
+      </div>
+
+      <script>
+          // Encrypt
+        let message = `
+        <br><br>
+        Hello loveey, <br><br>
+
+Happy 26th Birthday,<br><br>
+
+I wish you the best on your 26th year. I will always be here with you as we grow and struggle this year (I will be here). <br>Please stay strong as we wait for God's perfect time and it will all make sense slowly as time goes by. <br>
+<br><br>
+You may hate me yesterday and today for things I was unable to control, I am so sorry ulit :( , no matter how hard I say sorry. I will try my best and will always think of you same as what you said to me<br>
+<br><br>
+I am very anxious and sad when I don't see your message every hour in messenger....much worse not seeing in two days. <br>
+
+I thinks that's why I feel weak nowadays... but regardless I will still love you with the best that I can do...giving you the most priceless ,limited and scarced thing in the world<br>
+<br>
+Time<br><br>
+
+and giving it also together with passion as I now call them both as love.<br>
+
+I can't stop loving you loveey no matter what you do. I love you and my goal is to be there and see you happy in achieving your dreams.<br>
+
+I hope you love me too (I am dying inside to hug you)....<br><br>
+
+Happy Birthday Loveey<br><br>
+
+Love Alec<br>
+        `
+        var ciphertext = CryptoJS.AES.encrypt(message, 'perez_100_programming_naia').toString();
+
+    // Decrypt
+
+    $('#message').html(ciphertext)
+
+
+    function showMessage(){
+        if( $('#password').val() != "perez_100_programming_naia"){
+            alert('Incorrect Password. Please try again')
+            return;   
+        }
+        let password = $('#password').val()
+        let bytes  = CryptoJS.AES.decrypt(ciphertext, password);
+        let originalText = bytes.toString(CryptoJS.enc.Utf8);
+        $('#message2').html(originalText)
+        $('#passSection').hide()
+        $('#message').hide()
+
+
+
+    }
+      </script>
+
+</body>
+</html>
